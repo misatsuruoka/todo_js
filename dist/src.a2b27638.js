@@ -176,6 +176,7 @@ module.hot.accept(reloadCSS);
 "use strict";
 
 require("./styles.css");
+var _this = void 0;
 var onClickAdd = function onClickAdd() {
   // テキストボックスの値を取得し、初期化する
   var inputText = document.getElementById("add-text").value;
@@ -183,7 +184,41 @@ var onClickAdd = function onClickAdd() {
 
   // div生成
   var div = document.createElement("div");
+  div.className = "list-row";
   console.log(div);
+
+  // listタグ生成
+  var li = document.createElement("li");
+  li.innerText = inputText;
+  console.log(li);
+
+  // button(完了)タグ生成
+  var completeButton = document.createElement("button");
+  completeButton.innerText = "完了";
+  completeButton.addEventListener("click", function () {
+    // 押された完了ボタンの親タグを未完了リストから削除
+    // const completeTarget = completeButton.parentNode;
+    // document.getElementById("incomplete-list").removeChild(completeTarget);
+    // 押された完了ボタンの親タグを完了したTODO配下に移動
+    console.log(_this);
+  });
+
+  // button(削除)タグ生成
+  var deleteButton = document.createElement("button");
+  deleteButton.innerText = "削除";
+  deleteButton.addEventListener("click", function () {
+    // 押された削除ボタンの親タグ（div）を未完了リストから削除
+    var deleteTarget = deleteButton.parentNode;
+    document.getElementById("incomplete-list").removeChild(deleteTarget);
+  });
+
+  // divタグの子要素に各要素を設定
+  div.appendChild(li);
+  div.appendChild(completeButton);
+  div.appendChild(deleteButton);
+
+  // 未完了のリストに追加
+  document.getElementById("incomplete-list").appendChild(div);
 };
 document.getElementById("add-button").addEventListener("click", onClickAdd);
 },{"./styles.css":"src/styles.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {

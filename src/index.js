@@ -8,22 +8,20 @@ const onClickAdd = () => {
   // div生成
   const div = document.createElement("div");
   div.className = "list-row";
-  console.log(div);
 
   // listタグ生成
   const li = document.createElement("li");
   li.innerText = inputText;
-  console.log(li);
 
   // button(完了)タグ生成
   const completeButton = document.createElement("button");
   completeButton.innerText = "完了";
   completeButton.addEventListener("click", () => {
     // 押された完了ボタンの親タグを未完了リストから削除
-    // const completeTarget = completeButton.parentNode;
-    // document.getElementById("incomplete-list").removeChild(completeTarget);
+    const completeTarget = completeButton.parentNode;
+    document.getElementById("incomplete-list").removeChild(completeTarget);
     // 押された完了ボタンの親タグを完了したTODO配下に移動
-    console.log(this);
+    console.log(document.getElementById("complete"));
   });
 
   // button(削除)タグ生成

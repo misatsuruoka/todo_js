@@ -34,8 +34,13 @@ const onClickAdd = () => {
     const li = document.createElement("li");
     li.innerText = text;
 
-    // addTargetの子要素にリスト、ボタンを設定
+    // ボタンを作成
+    const returnButton = document.createElement("button");
+    returnButton.innerText = "戻す";
+
+    // addTargetの子要素にリスト、戻るボタンを設定
     addTarget.appendChild(li);
+    addTarget.appendChild(returnButton);
 
     // 完了したTODOの部分にaddTargetを追加
     document.getElementById("complete-list").appendChild(addTarget);

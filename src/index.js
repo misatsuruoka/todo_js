@@ -4,14 +4,17 @@ const onClickAdd = () => {
   // テキストボックスの値を取得し、初期化する
   const inputText = document.getElementById("add-text").value;
   document.getElementById("add-text").value = "";
+  createIncompleteText(inputText);
+};
 
+const createIncompleteText = (text) => {
   // div生成
   const div = document.createElement("div");
   div.className = "list-row";
 
   // listタグ生成
   const li = document.createElement("li");
-  li.innerText = inputText;
+  li.innerText = text;
 
   // button(完了)タグ生成
   const completeButton = document.createElement("button");
@@ -37,6 +40,14 @@ const onClickAdd = () => {
     // ボタンを作成
     const returnButton = document.createElement("button");
     returnButton.innerText = "戻す";
+    returnButton.addEventListener("click", () => {
+      const deleteTarget = returnButton.parentNode;
+
+      document.getElementById("complete-list").removeChild(deleteTarget);
+
+      const text = returnButton.parentNode.firstElementChild.innerText;
+      createIncompleteText(text);
+    });
 
     // addTargetの子要素にリスト、戻るボタンを設定
     addTarget.appendChild(li);
@@ -67,5 +78,4 @@ const onClickAdd = () => {
     document.getElementById("incomplete-list").removeChild(target);
   };
 };
-
 document.getElementById("add-button").addEventListener("click", onClickAdd);

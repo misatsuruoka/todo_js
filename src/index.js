@@ -18,10 +18,27 @@ const onClickAdd = () => {
   completeButton.innerText = "完了";
   completeButton.addEventListener("click", () => {
     // 押された完了ボタンの親タグを未完了リストから削除
-    const completeTarget = completeButton.parentNode;
-    removeIncompleteList(completeTarget);
-    // 押された完了ボタンの親タグを完了したTODO配下に移動
-    console.log(document.getElementById("complete"));
+    removeIncompleteList(completeButton.parentNode);
+
+    // タスクのテキストを定数textに保存
+    const text = completeButton.parentNode.firstElementChild.innerText;
+
+    // 追加するdiv要素を作成
+    const addTarget = completeButton.parentNode;
+
+    // 追加するdiv要素を初期化
+    addTarget.innerText = null;
+    console.log(addTarget);
+
+    //listタグを作成
+    const li = document.createElement("li");
+    li.innerText = text;
+
+    // addTargetの子要素にリスト、ボタンを設定
+    addTarget.appendChild(li);
+
+    // 完了したTODOの部分にaddTargetを追加
+    document.getElementById("complete-list").appendChild(addTarget);
   });
 
   // button(削除)タグ生成

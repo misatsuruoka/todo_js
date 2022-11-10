@@ -19,7 +19,7 @@ const onClickAdd = () => {
   completeButton.addEventListener("click", () => {
     // 押された完了ボタンの親タグを未完了リストから削除
     const completeTarget = completeButton.parentNode;
-    document.getElementById("incomplete-list").removeChild(completeTarget);
+    removeIncompleteList(completeTarget);
     // 押された完了ボタンの親タグを完了したTODO配下に移動
     console.log(document.getElementById("complete"));
   });
@@ -30,7 +30,7 @@ const onClickAdd = () => {
   deleteButton.addEventListener("click", () => {
     // 押された削除ボタンの親タグ（div）を未完了リストから削除
     const deleteTarget = deleteButton.parentNode;
-    document.getElementById("incomplete-list").removeChild(deleteTarget);
+    removeIncompleteList(deleteTarget);
   });
 
   // divタグの子要素に各要素を設定
@@ -40,6 +40,10 @@ const onClickAdd = () => {
 
   // 未完了のリストに追加
   document.getElementById("incomplete-list").appendChild(div);
+
+  const removeIncompleteList = (target) => {
+    document.getElementById("incomplete-list").removeChild(target);
+  };
 };
 
 document.getElementById("add-button").addEventListener("click", onClickAdd);
